@@ -1,6 +1,9 @@
 import pyxel
 
 
+WINDOW_W = 160
+WINDOW_H = 120
+
 SCENE_TITLE = 0
 SCENE_PLAY = 1
 
@@ -62,7 +65,7 @@ class Player:
 
 class App:
     def __init__(self):
-        pyxel.init(160, 120, title="Hello Pyxel", fps=10)
+        pyxel.init(WINDOW_W, WINDOW_H, title="Hello Pyxel", fps=10)
         pyxel.load("my_resource.pyxres")
         pyxel.image(2).load(0, 0, "pyxel_examples/assets/pyxel_logo_38x16.png")
         self.scene = SCENE_TITLE
@@ -86,8 +89,9 @@ class App:
             pyxel.cls(0)
             self.draw_title_scene()
         if self.scene == SCENE_PLAY:
-            pyxel.cls(1)
+            pyxel.cls(3)
             self.player.draw()
+            # pyxel.blt(self.player.x + 20,self.player.y + 20, 0, 0, 64 + ((pyxel.frame_count // 2) % 2)*16, 16, 16, 6)
 
     def draw_title_scene(self):
         pyxel.text(55, 41, "Hello, Pyxel!", pyxel.frame_count % 16)
