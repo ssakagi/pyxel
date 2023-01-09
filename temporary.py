@@ -1,8 +1,8 @@
 import pyxel
 
 
-WINDOW_W = 160
-WINDOW_H = 120
+WINDOW_W = 200
+WINDOW_H = 200
 
 SCENE_TITLE = 0
 SCENE_PLAY = 1
@@ -83,14 +83,17 @@ class App:
     def update_title_scene(self):
         if pyxel.btnp(pyxel.KEY_RETURN):
             self.scene = SCENE_PLAY
+            pyxel.playm(0, loop=True)
 
     def draw(self):
         if self.scene == SCENE_TITLE:
             pyxel.cls(0)
             self.draw_title_scene()
         if self.scene == SCENE_PLAY:
-            pyxel.cls(3)
+            pyxel.cls(7)
+            pyxel.blt(50, 0, 1, 0, 0, 64, 64, 6)
             self.player.draw()
+            pyxel.blt(50, 64, 1, 0, 64, 64, 64, 6)
             # pyxel.blt(self.player.x + 20,self.player.y + 20, 0, 0, 64 + ((pyxel.frame_count // 2) % 2)*16, 16, 16, 6)
 
     def draw_title_scene(self):
